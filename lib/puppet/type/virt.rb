@@ -398,6 +398,14 @@ Image files must end with `*.img`, `*.qcow` or `*.qcow2`"
       desc "Sets soft overusage time limit for disk quota (also known as grace period)."
     end
 
+    newparam(:format) do
+      desc "set the format of the disk file."
+
+      munge do |value|
+       "format=" + value
+      end
+    end
+
     newproperty(:quotaugidlimit, :parent => VirtNumericParam, :required_features => :disk_quota) do
       desc "Sets maximum number of user/group IDs in a guest for which disk quota inside the guest will be accounted. If this value is set to 0, user and group quotas inside the guest will not be accounted.
       Note that if you have previously set value of this parameter to 0, changing it while the guest is running will not take effect."
